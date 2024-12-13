@@ -34,6 +34,7 @@ def convert_fn_RU(df_calibration_avg):
     x = np.array([df.iloc[42:46].mean(), df.iloc[6:10].mean()])
     y = np.array([0, 12000])
     coefficients = np.polyfit(x, y, 1)
+    print(f"Coefficients values are: {coefficients}")
     a, b = coefficients
     print(f"The equation for the conversion curve is: y = {a:.4f}x + {b:.4f}")
 
@@ -81,12 +82,9 @@ def reference(converted_sensorgram):
 def process_and_plot(root):
     df_calibration = import_file("Calibration")
     df_sensorgram = import_file("Sensorgram")
-
     # df_sensorgram, df_calibration, df_calibration["Average"] = bypass_import_files()
 
     fig = plt.figure(figsize=(16, 9))
-    # figManager = plt.get_current_fig_manager()
-    # figManager.full_screen_toggle()
     # Define the position of the plotted graphs
     gs = GridSpec(3, 3, figure=fig)
     ax1 = fig.add_subplot(gs[0, 0])
